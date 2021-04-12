@@ -7,11 +7,11 @@ import { MdNotifications, MdApps } from 'react-icons/md';
 import image from '../../images/youtube.png';
 import avatar from '../../images/avatar.png';
 
-const Header = () => {
+const Header = ({handleToggleSidebar}) => {
     return (
         <div className="border border-dark header">
             
-            <FaBars className="header_menu" size={26} />
+            <FaBars className="header_menu" size={26} onClick={() =>handleToggleSidebar()}/>
 
             <img 
             className="header_logo" 
