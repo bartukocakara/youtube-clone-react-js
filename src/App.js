@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Container } from 'react-bootstrap';
+import Header from  "./components/header/Header";
+import Sidebar from  "./components/sidebar/Sidebar";
+import HomeScreen from "./components/screens/HomeScreen";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./_app.scss"; 
+const App = () => {
+    return (
+        <>
+          <Header />
+                <div className="app_container border border-info" >
+                <Sidebar />
+                <Container fluid className="app_main border border-warning">
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+                    <HomeScreen />
+
+                </Container>
+          </div>
+        </>
+    )
 }
 
-export default App;
+export default App
