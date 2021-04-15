@@ -3,15 +3,27 @@ import "./_video.scss";
 
 import { AiFillEye } from "react-icons/ai";
 
-const Video = () => {
+const Video = ({ video }) => {
+
+    const { 
+        id, 
+        snippet: { 
+            channelId,
+            channelTitle,
+            title,
+            publishedAt,
+            thumbnails:{medium},
+         },
+        } = video;
+
     return (
         <div className="video">
             <div className="video__top">
-                <img src="https://i.ytimg.com/vi/W9mqk__c-N0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDyILslVJ-pKrfFTVSIxY0phhZi5Q" alt="" />
-                <span>05:43</span>
+                <img src={medium.url} alt="" />
+                <span>{channelTitle}</span>
             </div>
             <div className="video__title">
-                Create app in 5 minutes by Bartu
+                {title}
             </div>
             <div className="video__details">
                 <span>

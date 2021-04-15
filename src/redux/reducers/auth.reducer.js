@@ -1,9 +1,15 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL, LOAD_PROFILE, LOG_OUT } from "../actionType"
+import { 
+   LOGIN_REQUEST, LOGIN_SUCCESS,
+   LOGIN_FAIL, LOAD_PROFILE, LOG_OUT } from "../actionType"
 
 const initialState = {
-    accesToken : null,
-    user : null,
-    loading : false
+   accessToken: sessionStorage.getItem('ytc-access-token')
+      ? sessionStorage.getItem('ytc-access-token')
+      : null,
+   user: sessionStorage.getItem('ytc-user')
+      ? JSON.parse(sessionStorage.getItem('ytc-user'))
+      : null,
+   loading: false,
 }
 
 
