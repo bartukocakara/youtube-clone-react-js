@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPopularVideos } from '../../../redux/actions/videos.action';
+import { getPopularVideos, getVideosByCategory } from '../../../redux/actions/videos.action';
 import CategoryBar from '../../categoryBar/CategoryBar';
 import Video from '../../video/Video';
 
-const HomeScreen = () => {
+import InfiniteScroll from 'react-infinite-scroll-component';
 
+const HomeScreen = () => {
 
     const dispatch = useDispatch();
 
@@ -17,9 +18,19 @@ const HomeScreen = () => {
     }, [dispatch])
 
 
-    const { videos } = useSelector(
+    const { videos, activeCategory } = useSelector(
+        
         state => state.homeVideosReducer
-     )
+    )
+
+    const fetchData = () => {
+        if(activeCategory === "All") {
+            dispatch(getPopularVideos())
+        }
+        else {
+            dispatch(getVideosByCategory(activeCategory))
+        }
+    }
 
     return (
             <Container>
@@ -27,16 +38,22 @@ const HomeScreen = () => {
                 <CategoryBar />
 
                 <Row>
-                {/* İstediğimiz miktarda list vermek için bunu kullan */}
-                {
-                    videos.map(video => (
-                        <Col lg={3} md={4}>
-                           <Video video={video} key={video.id} />
-                        </Col>
-                     )
-                )}
-
-
+                    <InfiniteScroll
+                        dataLength={videos.length}
+                        next={fetchData}
+                        hasMore={true}
+                        loader={
+                        <div className='spinner-border text-danger d-block mx-auto'></div>
+                        }
+                        className='row'>
+                        {
+                            videos.map((video, id) => (
+                                <Col lg={3} md={4} key={id} >
+                                <Video video={video} />
+                                </Col>
+                            )
+                        )}
+                    </InfiniteScroll>
                 </Row>
             </Container>
     )
