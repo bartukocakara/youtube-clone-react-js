@@ -20,7 +20,7 @@ const Video = ({ video }) => {
         <div className="video">
             <div className="video__top">
                 <img src={medium.url} alt="" />
-                <span>{channelTitle}</span>
+                <span>channelTitle</span>
             </div>
             <div className="video__title">
                 {title}
