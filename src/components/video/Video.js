@@ -3,6 +3,7 @@ import "./_video.scss";
 import request from '../../api'
 import moment from 'moment';
 import numeral from "numeral";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { AiFillEye } from "react-icons/ai";
 
@@ -50,22 +51,23 @@ const Video = ({ video }) => {
             const {
                 data: {items}} = await request('/channels', {
 
-                params : {
-                    part : "snippet",
-                    id : channelId
-                },
+                    params : {
+                        part : "snippet",
+                        id : channelId
+                    },
             })
             setChannelIcon(items[0].snippet.thumbnails.default)
         }
         get_channel_icon();
     }, [channelId]);
 
-
+    
     return (
         <div className="video">
             <div className="video__top">
-                <img src={medium.url} alt="" />
-                <span>{_duration}</span>
+                <LazyLoadImage src={medium.url} effect="blur" />
+                {/* <img src={medium.url} alt="" /> */}
+                <span className="video__top__duration">{_duration}</span>
             </div>
             <div className="video__title">
                 {title}
@@ -77,7 +79,8 @@ const Video = ({ video }) => {
                 <span>{moment(publishedAt).fromNow()}</span>
             </div>
             <div className="video__channel">
-                <img src={channelIcon?.url} alt="" />
+                <LazyLoadImage src={channelIcon?.url} effect="blur" />
+                {/* <img src={channelIcon?.url} alt="" /> */}
                 <p>{channelTitle}</p>
             </div>
         </div>

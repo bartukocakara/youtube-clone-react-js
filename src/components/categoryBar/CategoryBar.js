@@ -40,12 +40,12 @@ const CategoryBar = () => {
     return (
         <div className="categoryBar">
             
-    {keywords.map((value, i) => (
-        <span key={i}
-            onClick={() => handleClick(value)}
-            className={activeElement === value ? 'active' : ''}
-        >{value}</span>  
-    ))}
+            {keywords.map((value, i) => (
+                <span key={i}
+                    onClick={() => handleClick(value)}
+                    className={activeElement === value ? 'active' : ''}
+                >{value}</span>  
+            ))}
 
 
         </div>
