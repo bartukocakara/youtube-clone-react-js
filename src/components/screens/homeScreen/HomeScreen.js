@@ -55,7 +55,6 @@ const HomeScreen = () => {
                                     <SkeletonVideo />
                                 </Col>
                             )
-                        
                         }
                     </InfiniteScroll>
             </Container>
